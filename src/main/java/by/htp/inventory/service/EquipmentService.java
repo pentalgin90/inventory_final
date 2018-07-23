@@ -1,11 +1,10 @@
-package by.htp.inventory.dao;
+package by.htp.inventory.service;
 
 import by.htp.inventory.entity.*;
 
 import java.util.List;
 
-public interface EquipmentDAO {
-
+public interface EquipmentService {
     //Monitor
     void addNewMonitor(Monitor newMonitor);
     Monitor findMonitor(long idMonitor);
@@ -61,5 +60,4 @@ public interface EquipmentDAO {
     List<TerminalDocStation> findAllTerminalDocStations();
     void deleteTerminalDocStation(long idTerminalDocStation);
     void updateTerminalDocStation(TerminalDocStation TerminalDocStation, long idTerminalDocStation);
-
 }
