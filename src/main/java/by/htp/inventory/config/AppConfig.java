@@ -6,10 +6,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -25,7 +27,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages="by.htp.inventory.*")
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "by.htp.inventory.repository")
+@EnableJpaRepositories(basePackages = "by.htp.inventory.repositories")
 public class AppConfig {
 	
 	@Value("${jdbc.drivername}")
@@ -94,7 +96,9 @@ public class AppConfig {
 		return transactionManager;
 	}
 	@Bean
-	public PreferencesPlaceholderConfigurer placeholderConfigurer() {
-		return new PreferencesPlaceholderConfigurer();
+	public PropertyPlaceholderConfigurer placeholderConfigurer() {
+		PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
+		propertyPlaceholderConfigurer.setLocation(new ClassPathResource("database.properties"));
+		return propertyPlaceholderConfigurer;
 	}
 }
