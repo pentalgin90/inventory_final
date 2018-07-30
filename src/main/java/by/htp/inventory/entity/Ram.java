@@ -1,38 +1,27 @@
 package by.htp.inventory.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="ram")
-public class Ram extends BaseEntity{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4171231360253026996L;
-	@Column(name="ram")
-	private String ram;
-	public Ram() {
-	}
-	public Ram(int id) {
-		super(id);
-	}
-	public Ram(String ram) {
-		super();
-		this.ram = ram;
-	}
-	public String getRam() {
-		return ram;
-	}
-	public void setRam(String ram) {
-		this.ram = ram;
-	}
-	@Override
-	public String toString() {
-		return "Ram [ram=" + ram + "]";
-	}
-	
-
+public class Ram extends BaseEntity {
+    @Column(name = "model")
+    private String model;
+    @Column(name="inventory_number")
+    private String inventory_number;
+    @Column(name="get_number")
+    private String get_number;
+    @ElementCollection(fetch=FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name="brand")
+    private Brand brand;
 }

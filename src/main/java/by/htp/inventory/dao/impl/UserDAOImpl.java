@@ -6,6 +6,7 @@ import by.htp.inventory.entity.User;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
+
     @Override
     public void addNewUser(User newUser) {
 

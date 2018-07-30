@@ -41,11 +41,11 @@ public interface EquipmentService {
     void updatePrinter(Printer Printer, long idPrinter);
 
     //WifiDot
-    void addNewWifiDot(WiFiDot newWiFiDot);
-    WiFiDot findWifiDot(long idWiFiDot);
-    List<WiFiDot> findAllWifiDots();
+    void addNewWifiDot(WifiDot newWiFiDot);
+    WifiDot findWifiDot(long idWiFiDot);
+    List<WifiDot> findAllWifiDots();
     void deleteWifiDot(long idWiFiDot);
-    void updateWifiDot(WiFiDot wiFiDot, long idWiFiDot);
+    void updateWifiDot(WifiDot wifiDot, long idWiFiDot);
 
     //Terminal
     void addNewTerminal(Terminal newTerminal);
@@ -54,10 +54,59 @@ public interface EquipmentService {
     void deleteTerminal(long idTerminal);
     void updateTerminal(Terminal Terminal, long idTerminal);
 
-    //TerminalDocStation
-    void addNewTerminalDocStation(TerminalDocStation newTerminalDocStation);
-    TerminalDocStation findTerminalDocStation(long idTerminalDocStation);
-    List<TerminalDocStation> findAllTerminalDocStations();
+    //TerminalDot
+    void addNewTerminalDocStation(TerminalDot newTerminalDocStation);
+    TerminalDot findTerminalDocStation(long idTerminalDocStation);
+    List<TerminalDot> findAllTerminalDocStations();
     void deleteTerminalDocStation(long idTerminalDocStation);
-    void updateTerminalDocStation(TerminalDocStation TerminalDocStation, long idTerminalDocStation);
+    void updateTerminalDocStation(TerminalDot TerminalDocStation, long idTerminalDocStation);
+
+    //Antena
+    void addNewMonitor(Antena newAntena);
+    Antena findAntena(long idAntena);
+    List<Antena> findAllAntens();
+    void deleteAntena(long idAntena);
+    void updateMonitor(Antena antena, long idAntena);
+
+    //Battary
+    void addNewBattary(Battary newBattary);
+    Battary findBattary(long idBattary);
+    List<Battary> findAllBattarys();
+    void deleteBattary(long idBattary);
+    void updateBattary(Battary battary, long idBattary);
+
+    //NetCard
+    void addNewNetCard(NetCard newNetCard);
+    NetCard findNetCard(long idNetCard);
+    List<NetCard> findAllNetCards();
+    void deleteNetCard(long idNetCard);
+    void updateNetCard(NetCard netCard, long idNetCard);
+
+    //Server
+    void addNewServer(Server newServer);
+    Server findServer(long idServer);
+    List<Server> findAllServers();
+    void deleteServer(long idServer);
+    void updateServer(Server server, long idServer);
+
+    //Telephone
+    void addNewTelephone(Telephone newTelephone);
+    Telephone findTelephone(long idTelephone);
+    List<Telephone> findAllTelephons();
+    void deleteTelephone(long idTelephone);
+    void updateTelephone(Telephone telephone, long idTelephone);
+
+    //Ups
+    void addNewUps(Ups newUps);
+    Ups findUps(long idUps);
+    List<Ups> findAllUps();
+    void deleteUps(long idUps);
+    void updateUps(Ups ups, long idUps);
+
+    //WifiCard
+    void addNewWifiCard(WifiCard newWifiCard);
+    WifiCard findWifiCard(long idWifiCard);
+    List<WifiCard> findAllWifiCards();
+    void deleteWifiCard(long idWifiCard);
+    void updateWifiCard(WifiCard wifiCard, long idWifiCard);
 }

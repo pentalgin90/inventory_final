@@ -7,21 +7,21 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="commutator")
-public class Commutator extends BaseEntity{
-    @Column(name="moddel")
+@Table(name="wifiDot")
+public class WifiDot extends BaseEntity {
+    @Column(name="model")
     private String model;
+
     @Column(name="inventory_number")
-    private String iventoryNumber;
+    private String inventoryNumber;
+
     @Column(name="get_number")
     private String getNumber;
-    @Column(name="port_quantity")
-    private int portQuantity;
 
     @ElementCollection(fetch=FetchType.LAZY)
     @ManyToOne

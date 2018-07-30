@@ -1,147 +1,41 @@
 package by.htp.inventory.entity;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name="equipment")
+@Table(name="printer")
 public class Printer extends BaseEntity{
+    @Column(name="model")
+    private String model;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2797888200247133756L;
-	@Column(name="inventoryId")
-	private String inventoryId;
-	
-	@Column(name="model")
-	private String model;
-	
-	@Column(name="inputDoc")
-	private String inputDoc;
-	
-	@ElementCollection(fetch=FetchType.LAZY)
-	@ManyToOne
-	@JoinColumn(name="type")
-	private Type type;
-	
-	@ElementCollection(fetch=FetchType.LAZY)
-	@ManyToOne
-	@JoinColumn(name="typePrinter")
-	private TypePrinter typePrinter;
-	
-	@ElementCollection(fetch=FetchType.LAZY)
-	@ManyToOne
-	@JoinColumn(name="typeCartridge")
-	private TypeCartridge typeCartridge;
-	
-	@ElementCollection(fetch=FetchType.LAZY)
-	@ManyToOne
-	@JoinColumn(name="amountColor")
-	private AmountColor amountColor;
-	
-	@ElementCollection(fetch=FetchType.LAZY)
-	@ManyToOne
-	@JoinColumn(name="user")
-	private User user;
+    @Column(name="inventory_number")
+    private String inventoryNumber;
 
-	public Printer() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    @Column(name="get_number")
+    private String getNumber;
 
-	public Printer(int id) {
-		super(id);
-		// TODO Auto-generated constructor stub
-	}
+    @Column(name="type")
+    private String type;
 
-	public Printer(String inventoryId, String model, String inputDoc, Type type, TypePrinter typePrinter,
-			TypeCartridge typeCartridge, AmountColor amountColor, User user) {
-		super();
-		this.inventoryId = inventoryId;
-		this.model = model;
-		this.inputDoc = inputDoc;
-		this.type = type;
-		this.typePrinter = typePrinter;
-		this.typeCartridge = typeCartridge;
-		this.amountColor = amountColor;
-		this.user = user;
-	}
+    @Column(name="color_quantity")
+    private int colorQuantity;
 
-	public String getInventoryId() {
-		return inventoryId;
-	}
+    @ElementCollection(fetch=FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name="brand")
+    private Brand brand;
 
-	public void setInventoryId(String inventoryId) {
-		this.inventoryId = inventoryId;
-	}
-
-	public String getModel() {
-		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
-	}
-
-	public String getInputDoc() {
-		return inputDoc;
-	}
-
-	public void setInputDoc(String inputDoc) {
-		this.inputDoc = inputDoc;
-	}
-
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
-	public TypePrinter getTypePrinter() {
-		return typePrinter;
-	}
-
-	public void setTypePrinter(TypePrinter typePrinter) {
-		this.typePrinter = typePrinter;
-	}
-
-	public TypeCartridge getTypeCartridge() {
-		return typeCartridge;
-	}
-
-	public void setTypeCartridge(TypeCartridge typeCartridge) {
-		this.typeCartridge = typeCartridge;
-	}
-
-	public AmountColor getAmountColor() {
-		return amountColor;
-	}
-
-	public void setAmountColor(AmountColor amountColor) {
-		this.amountColor = amountColor;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public String toString() {
-		return "Printer [inventoryId=" + inventoryId + ", model=" + model + ", inputDoc=" + inputDoc + ", type=" + type
-				+ ", typePrinter=" + typePrinter + ", typeCartridge=" + typeCartridge + ", amountColor=" + amountColor
-				+ ", user=" + user + "]";
-	}
-	
+    @ElementCollection(fetch=FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name="user")
+    private User user;
 }

@@ -12,16 +12,35 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="commutator")
-public class Commutator extends BaseEntity{
-    @Column(name="moddel")
+@Table(name="server")
+public class Server extends BaseEntity {
+    @Column(name="model")
     private String model;
+
     @Column(name="inventory_number")
-    private String iventoryNumber;
+    private String inventoryNumber;
+
     @Column(name="get_number")
     private String getNumber;
-    @Column(name="port_quantity")
-    private int portQuantity;
+
+    @Column(name="hdd")
+    private int hdd;
+
+    @Column(name="ssd")
+    private int ssd;
+
+    @Column(name="cpu_quantity")
+    private int cpuQuantity;
+
+    @ElementCollection(fetch=FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name="cpu")
+    private Cpu cpu;
+
+    @ElementCollection(fetch=FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name="ram")
+    private Ram ram;
 
     @ElementCollection(fetch=FetchType.LAZY)
     @ManyToOne

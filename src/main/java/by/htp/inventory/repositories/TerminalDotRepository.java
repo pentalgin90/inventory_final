@@ -1,9 +1,9 @@
 package by.htp.inventory.repositories;
 
-import by.htp.inventory.entity.TerminalDocStation;
+import by.htp.inventory.entity.TerminalDot;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TerminalDocStationRepository extends JpaRepository<TerminalDocStation, Long> {
+public interface TerminalDotRepository extends JpaRepository<TerminalDot, Long> {
 }
