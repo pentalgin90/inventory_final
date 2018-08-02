@@ -1,10 +1,5 @@
-import by.htp.inventory.config.AppConfig;
-import by.htp.inventory.dao.impl.EquipmentDAOImpl;
 import by.htp.inventory.entity.Monitor;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import javax.sql.DataSource;
 
 public class TestDAO {
     @Test
