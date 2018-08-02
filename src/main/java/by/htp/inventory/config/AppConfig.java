@@ -5,17 +5,17 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -44,7 +44,7 @@ public class AppConfig {
 	
 	@Value("${hibernate.dialect}")
 	private String hibernateDialect;
-	
+
 	@Value("${hibernate.format_sql}")
 	private String formatSql;
 	
@@ -55,6 +55,7 @@ public class AppConfig {
 	private String creationPolicy;
 
 
+
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -62,7 +63,7 @@ public class AppConfig {
 		dataSource.setUrl(url);
 		dataSource.setUsername(username);
 		dataSource.setPassword(password);
-		return dataSource();
+		return dataSource;
 	}
 	@Bean
 	public ViewResolver viewResolver() {
@@ -72,23 +73,49 @@ public class AppConfig {
         viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-	@Bean
+	/*@Bean
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
 		sessionFactoryBean.setDataSource(dataSource());
 		sessionFactoryBean.setPackagesToScan("by.htp.inventory.entity");
 		sessionFactoryBean.setHibernateProperties(hibernateProperties());
+
 		return sessionFactoryBean;
+	}*/
+
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setGenerateDdl(true);
+
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setPackagesToScan("by.htp.inventory.entity");
+		factory.setDataSource(dataSource());
+		factory.setJpaProperties(jpaProperties());
+
+		return factory;
 	}
-	
-	public Properties hibernateProperties() {
+
+	@Bean
+	public Properties jpaProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.dialect", hibernateDialect);
 		properties.setProperty("hibernate.show_sql", showSql);
 		properties.setProperty("hibernate.format_sql", formatSql);
 		properties.setProperty("hibernate.hbm2ddl.auto", creationPolicy);
+
 		return properties;
 	}
+	/*@Bean
+	public Properties hibernateProperties() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.dialect", hibernateDialect);
+		properties.setProperty("hibernate.show_sql", formatSql);
+		properties.setProperty("hibernate.format_sql", showSql);
+		properties.setProperty("hibernate.hbm2ddl.auto", creationPolicy);
+		return properties;
+	}*/
 	@Bean
 	JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
