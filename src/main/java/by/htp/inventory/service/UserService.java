@@ -5,6 +5,7 @@ import by.htp.inventory.entity.User;
 import java.util.List;
 
 public interface UserService {
+
     //User
     void addNewUser(User newUser);
     User findUser(long idUser);

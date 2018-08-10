@@ -1,17 +1,17 @@
 package by.htp.inventory.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name="monitor")
+@Proxy(lazy = false)
 public class Monitor extends BaseEntity {
 
 @Column(name="model")

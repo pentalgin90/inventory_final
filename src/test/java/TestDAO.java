@@ -1,17 +1,18 @@
-import by.htp.inventory.dao.MonitorDAO;
-import by.htp.inventory.dao.impl.MonitorDAOImpl;
 import by.htp.inventory.entity.Monitor;
 import by.htp.inventory.repositories.MonitorRepository;
+import by.htp.inventory.service.MonitorService;
+import by.htp.inventory.service.impl.MonitorServiceImpl;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
 
 public class TestDAO {
 
-    @Test
+   @Test
     public void testConnection() {
-        MonitorRepository monitorRepository = null;
-        long id = 2;
-        Monitor monitor = monitorRepository.getOne(id);
-        System.out.println(monitor);
+       MonitorService monitorService = new MonitorServiceImpl();
+       List<Monitor> monitors = monitorService.findAllMonitors();
+       monitors.forEach(monitor -> System.out.println(monitor));
     }
 }

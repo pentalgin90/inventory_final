@@ -1,11 +1,13 @@
 package by.htp.inventory.service.impl;
 
-import by.htp.inventory.entity.User;
 import by.htp.inventory.service.UserService;
+import by.htp.inventory.entity.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserServiceImpl implements UserService {
+
     @Override
     public void addNewUser(User newUser) {
 

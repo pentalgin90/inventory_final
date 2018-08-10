@@ -2,7 +2,6 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +18,7 @@
           crossorigin="anonymous">
 
 
-    <title>Все тяхника</title>
+    <title>Мониторы</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -45,54 +44,32 @@
         </form>
     </div>
 </nav>
-<form action="/monitor/monitors" method="post">
-<button type="submit" class="btn btn-success">
-    Мониторы <span class="badge badge-light"><c:out value="${amountMonitors}" /></span>
-</button>
-</form>
-<button type="button" class="btn btn-success">
-    Ноутбуки <span class="badge badge-light"><c:out value="${amountLaptops}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Антены <span class="badge badge-light"><c:out value="${amountAntenas}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Аккамуляторы <span class="badge badge-light"><c:out value="${amountBattaries}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Принтеры <span class="badge badge-light"><c:out value="${amountPrinters}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Компьютеры <span class="badge badge-light"><c:out value="${amountComputers}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Коммутаторы <span class="badge badge-light"><c:out value="${amountCommutators}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    NetCards <span class="badge badge-light"><c:out value="${amountNetCards}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Терминалы <span class="badge badge-light"><c:out value="${amountTerminals}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    WifiCards <span class="badge badge-light"><c:out value="${amountWifiCards}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Серверы <span class="badge badge-light"><c:out value="${amountServers}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    WifiDot <span class="badge badge-light"><c:out value="${amountWifiDots}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    UPS <span class="badge badge-light"><c:out value="${amountUps}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Базы Терминалов <span class="badge badge-light"><c:out value="${amountTerminalDots}" /></span>
-</button>
-<button type="button" class="btn btn-success">
-    Телефоны <span class="badge badge-light"><c:out value="${amountTelephones}" /></span>
-</button>
-
+<div class="container">
+    <table class="table table-hover table-sm">
+        <thead style="background-color:LimeGreen;">
+        <tr>
+            <th>inventoryID</th>
+            <th>Местоположение</th>
+            <th>Бренд</th>
+            <th>Модель</th>
+            <th>Диагональ</th>
+            <th>Номер прихода</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="monitor" items="${monitors}">
+            <tr>
+                <td><c:out value="${monitor.inventaryId}" /></td>
+                <td><c:out value="${monitor.user.lastName}" /></td>
+                <td><c:out value="${monitor.brand.brand}" /></td>
+                <td><c:out value="${monitor.model}"/></td>
+                <td><c:out value="${monitor.diagonal.diagonal}"/></td>
+                <td><c:out value="${monitor.getNumber}"/></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

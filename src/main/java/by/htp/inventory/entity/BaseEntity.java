@@ -20,7 +20,7 @@ public class BaseEntity implements Serializable{
 	private long id;
 	public BaseEntity() {
 	}
-	public BaseEntity(int id) {
+	public BaseEntity(long id) {
 		super();
 		this.id = id;
 	}
